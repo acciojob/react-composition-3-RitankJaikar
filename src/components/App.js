@@ -1,11 +1,18 @@
 
-import React from "react";
+import React, { useState } from "react";
 import './../styles/App.css';
+import Tooltip from "./Tooltip";
 
 const App = () => {
+  const [tooltip1, setTooltip1] = useState(false);
+  const [tooltip2, setTooltip2] = useState(false);
+
   return (
     <div>
-        {/* Do not remove the main div */}
+        <h2 onMouseEnter={() => setTooltip1(true)} onMouseLeave={() => setTooltip1(false)}>Hover over me</h2>
+        {tooltip1 && <Tooltip>This is a tooltip</Tooltip>}
+        <p onMouseEnter={() => setTooltip2(true)} onMouseLeave={() => setTooltip2(false)}>Hover over me to see another tooltip</p>
+        {tooltip2 && <Tooltip>This is another tooltip</Tooltip>}
     </div>
   )
 }
