@@ -1,25 +1,40 @@
-
 import React, { useState } from "react";
-import './../styles/App.css';
-import Tooltip from "./Tooltip";
 
-const App = () => {
-  const [tooltip1, setTooltip1] = useState(false);
-  const [tooltip2, setTooltip2] = useState(false);
+const Tooltip = ({ children, text }) => {
+  const [visible, setVisible] = useState(false);
 
   return (
-    <div>
-        <h2 onMouseEnter={() => setTooltip1(true)} onMouseLeave={() => setTooltip1(false)} className="tooltip" mouse>
-          <div><div>Hover over me</div></div>
-          {tooltip1 && <Tooltip>This is a tooltip</Tooltip>}
-        </h2>
-        
-        <p onMouseEnter={() => setTooltip2(true)} onMouseLeave={() => setTooltip2(false)} className="tooltip">
-          <div><div>Hover over me to see another tooltip</div></div>
-          {tooltip2 && <Tooltip>This is another tooltip</Tooltip>}
-        </p>
+    <div
+      className="tooltip"
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+    >
+      {children}
+      {visible && (
+        <div className="tooltiptext" data-layer="Content">
+          {text}
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default App
+const App = () => {
+  return (
+    <div>
+      <h1>Tooltip App</h1>
+      <h2 className="tooltip">
+        <Tooltip text="This is a tooltip">
+          <div>Hover over me!</div>
+        </Tooltip>
+      </h2>
+      <p className="tooltip">
+        <Tooltip text="This is another tooltip">
+          <div>Hover over me too!</div>
+        </Tooltip>
+      </p>
+    </div>
+  );
+};
+
+export default App;
