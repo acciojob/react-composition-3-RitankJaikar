@@ -16,7 +16,7 @@ const App = () => {
         
         <p onMouseEnter={() => setTooltip2(true)} onMouseLeave={() => setTooltip2(false)} className="tooltip">
           <div><div>Hover over me to see another tooltip</div></div>
-          {/* {tooltip2 && <Tooltip>This is another tooltip</Tooltip>} */}
+          {tooltip2 && <Tooltip>This is another tooltip</Tooltip>}
         </p>
     </div>
   )
