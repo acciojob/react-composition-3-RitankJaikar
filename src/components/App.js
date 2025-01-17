@@ -1,40 +1,48 @@
 import React, { useState } from "react";
 
-const Tooltip = ({ children, text }) => {
-  const [visible, setVisible] = useState(false);
+const Tooltip = () => {
+  const [tooltipVisible, setTooltipVisible] = useState(null);
 
-  return (
-    <div
-      className="tooltip"
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => setVisible(false)}
-    >
-      {children}
-      {visible && (
-        <div className="tooltiptext" data-layer="Content">
-          {text}
-        </div>
-      )}
-    </div>
-  );
-};
+  const handleMouseEnter = (id) => {
+    setTooltipVisible(id);
+  };
 
-const App = () => {
+  const handleMouseLeave = () => {
+    setTooltipVisible(null);
+  };
+
   return (
     <div>
-      <h1>Tooltip App</h1>
-      <h2 className="tooltip">
-        <Tooltip text="This is a tooltip">
-          <div>Hover over me!</div>
-        </Tooltip>
+      <h2
+        className="tooltip"
+        onMouseEnter={() => handleMouseEnter("tooltip1")}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div>
+          Hover over me
+          {tooltipVisible === "tooltip1" && (
+            <div className="tooltiptext" data-layer="Content">
+              This is a tooltip
+            </div>
+          )}
+        </div>
       </h2>
-      <p className="tooltip">
-        <Tooltip text="This is another tooltip">
-          <div>Hover over me too!</div>
-        </Tooltip>
+      <p
+        className="tooltip"
+        onMouseEnter={() => handleMouseEnter("tooltip2")}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div>
+          Hover over me
+          {tooltipVisible === "tooltip2" && (
+            <div className="tooltiptext" data-layer="Content">
+              This is another tooltip
+            </div>
+          )}
+        </div>
       </p>
     </div>
   );
 };
 
-export default App;
+export default Tooltip;
