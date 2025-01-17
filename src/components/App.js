@@ -21,7 +21,7 @@ const Tooltip = () => {
         <div>
           Hover over me
           {tooltipVisible === "tooltip1" && (
-            <div className="tooltiptext" data-layer="Content">
+            <div className="" data-layer="Content">
               This is a tooltip
             </div>
           )}
@@ -35,7 +35,7 @@ const Tooltip = () => {
         <div>
           Hover over me
           {tooltipVisible === "tooltip2" && (
-            <div className="tooltiptext" data-layer="Content">
+            <div className="" data-layer="Content">
               This is another tooltip
             </div>
           )}
